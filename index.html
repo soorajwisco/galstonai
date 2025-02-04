@@ -116,12 +116,65 @@
 
     /* FOOTER */
     footer {
-      text-align: center;
-      padding: 2rem;
-      font-size: 1rem;
-      color: var(--gray-text);
       background: #0b0c10;
-      border-top: 1px solid rgba(255,255,255,0.1);
+      color: var(--gray-text);
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      margin-top: 3rem;
+      position: relative;
+      z-index: 1001; /* ensures layering above canvas */
+      padding: 3rem 2rem; /* bigger padding for a large footer */
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      justify-content: space-between;
+      align-items: flex-start;
+      font-size: 0.95rem;
+    }
+
+    .footer-column {
+      flex: 1 1 250px;
+      max-width: 300px;
+    }
+    .footer-column h4 {
+      font-size: 1.2rem;
+      color: var(--accent-color);
+      margin-bottom: 1rem;
+    }
+    .footer-column p,
+    .footer-column a {
+      color: var(--gray-text);
+      line-height: 1.5;
+      margin-bottom: 0.5rem;
+      text-decoration: none;
+      display: block;
+      transition: color var(--transition);
+    }
+    .footer-column a:hover {
+      color: var(--secondary-color);
+    }
+
+    .footer-bottom {
+      width: 100%;
+      text-align: center;
+      margin-top: 2rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      padding-top: 1rem;
+      font-size: 0.9rem;
+    }
+
+    @media (max-width: 768px) {
+      .page-header h1 {
+        font-size: 2rem;
+      }
+      .page-header p {
+        font-size: 1rem;
+      }
+      footer {
+        flex-direction: column;
+      }
+      .footer-column {
+        max-width: 100%;
+      }
     }
   </style>
 </head>
@@ -143,8 +196,51 @@
     <button class="cta-button" onclick="navigateTo('about.html')">Explore More</button>
   </section>
 
+  <!-- LARGE FOOTER -->
   <footer>
-    <p>&copy; 2025 Galston AI. All rights reserved.</p>
+    <!-- COLUMN 1: ADDRESS/CONTACT -->
+    <div class="footer-column">
+      <h4>Headquarters</h4>
+      <p>Galston AI</p>
+      <p>1074 Nefarious Blvd</p>
+      <p>San Francisco, CA 94103</p>
+      <p>United States</p>
+      <p>Phone: (415) 828-5504</p>
+      <p>Email: careers@galstonai.com</p>
+    </div>
+
+    <!-- COLUMN 2: QUICK LINKS -->
+    <div class="footer-column">
+      <h4>Quick Links</h4>
+      <a onclick="navigateTo('about.html')">About Us</a>
+      <a onclick="navigateTo('product.html')">Product</a>
+      <a onclick="navigateTo('team.html')">Our Team</a>
+      <a onclick="navigateTo('careers.html')">Careers</a>
+      <a onclick="navigateTo('contact.html')">Contact</a>
+    </div>
+
+    <!-- COLUMN 3: SOCIAL MEDIA / ETC. -->
+    <div class="footer-column">
+      <h4>Connect with Us</h4>
+      <a href="#">LinkedIn</a>
+      <a href="#">Twitter</a>
+      <a href="#">GitHub</a>
+      <a href="#">Facebook</a>
+    </div>
+
+    <!-- COLUMN 4: DISCLAIMER (or extra info) -->
+    <div class="footer-column">
+      <h4>Disclaimer</h4>
+      <p>
+        Galston AI is an equal-opportunity employer committed to fostering an inclusive
+        workplace. We strive to maintain a safe environment that values diversity and
+        encourages innovation.
+      </p>
+    </div>
+
+    <div class="footer-bottom">
+      &copy; 2025 Galston AI. All rights reserved.
+    </div>
   </footer>
 
   <script>

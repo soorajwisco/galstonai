@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Team - Galston AI</title>
+  <title>Contact - Galston AI</title>
   
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
@@ -100,54 +100,63 @@
       line-height: 1.6;
     }
 
-    /* TEAM SECTION */
-    .team-section {
+    /* CONTACT SECTION */
+    .contact-section {
       width: 90%;
-      max-width: 1200px;
+      max-width: 800px;
       margin: 0 auto;
       padding: 4rem 0;
     }
-    .team-section h2 {
+    .contact-section h2 {
       font-size: 2rem;
       margin-bottom: 1rem;
       color: var(--accent-color);
       text-align: center;
     }
-    .team-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 2rem;
-      margin-top: 2rem;
-    }
-    .team-member {
-      background: rgba(255, 255, 255, 0.05);
-      padding: 2rem;
-      border-radius: 8px;
-      text-align: center;
-      transition: transform var(--transition);
-    }
-    .team-member:hover {
-      transform: translateY(-3px);
-    }
-    .team-member img {
-      width: 100px;
-      height: 100px;
-      border-radius: 50%;
-      object-fit: cover;
-      margin-bottom: 1rem;
-    }
-    .team-member h3 {
-      color: var(--accent-color);
-      margin-bottom: 0.3rem;
-      font-size: 1.2rem;
-    }
-    .team-member p {
+    .contact-section p {
       color: var(--gray-text);
-      font-size: 0.95rem;
-      line-height: 1.4;
+      text-align: center;
+      margin-bottom: 2rem;
+      font-size: 1.1rem;
+      line-height: 1.6;
+    }
+    .contact-form {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+    .contact-form input,
+    .contact-form textarea {
+      width: 100%;
+      padding: 0.8rem;
+      border-radius: 6px;
+      border: 1px solid rgba(255,255,255,0.2);
+      background: rgba(255,255,255,0.05);
+      color: var(--text-color);
+      font-size: 1rem;
+      outline: none;
+      transition: border-color var(--transition);
+    }
+    .contact-form input:focus,
+    .contact-form textarea:focus {
+      border-color: var(--accent-color);
+    }
+    .submit-btn {
+      width: 120px;
+      padding: 0.8rem;
+      border-radius: 6px;
+      border: none;
+      background: var(--accent-color);
+      color: var(--text-color);
+      font-weight: 600;
+      cursor: pointer;
+      transition: background var(--transition), transform var(--transition);
+    }
+    .submit-btn:hover {
+      background: var(--secondary-color);
+      transform: scale(1.05);
     }
 
-    /* FOOTER */
     /* FOOTER */
     footer {
       background: #0b0c10;
@@ -227,71 +236,30 @@
 
   <!-- PAGE HEADER -->
   <div class="page-header">
-    <h1>Our Team</h1>
+    <h1>Contact Galston AI</h1>
     <p>
-      Meet the brilliant minds driving innovation at Galston AI—from AI researchers
-      to product visionaries.
+      Questions, partnerships, or press inquiries? We’d love to hear from you.
+      Get in touch with our team.
     </p>
   </div>
 
-  <div class="team-section">
-    <h2>Leadership</h2>
-    <div class="team-grid">
-      <div class="team-member">
-        <img src="https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcTS2PDCBqHyY2ZOYXOpBKPwE_1tYZcr-8g2O9h9UjmXxwfWEoyXLgSIn5AkNfafGMWU7tsj4w" alt="Team member"/>
-        <h3>Dr. Elias Galston</h3>
-        <p>Founder & CEO</p>
-      </div>
-      <div class="team-member">
-        <img src="https://media.istockphoto.com/id/1386217759/photo/portrait-of-a-confident-young-businesswoman-standing-against-an-urban-background.jpg?s=612x612&w=0&k=20&c=fAzBj4UAksz3wwAjXxKxByZMqDSuqQZSTij7jBiPtJc=" alt="Team member"/>
-        <h3>Lena Fischer</h3>
-        <p>Co-Founder & CTO</p>
-      </div>
-      <div class="team-member">
-        <img src="https://pbs.twimg.com/profile_images/1724120841594769409/K68UdEl2_400x400.jpg" alt="Team member"/>
-        <h3>Marcus Yuan</h3>
-        <p>Head of Engineering</p>
-      </div>
-      <div class="team-member">
-        <img src="https://parksiderangers.com/images/2020/10/8/Martinez_Sophia.jpg?width=300" alt="Team member"/>
-        <h3>Sophia Martinez</h3>
-        <p>Lead AI Researcher</p>
-      </div>
-    </div>
-  </div>
-
-  <div class="team-section" style="padding-top: 0;">
-    <h2>Our Developers & Researchers</h2>
-    <p style="text-align:center; max-width: 800px; margin: 0 auto; color: var(--gray-text); margin-bottom: 2rem;">
-      Our diverse group of software engineers, data scientists, and product managers
-      come together to craft next-gen AI solutions that push boundaries.
+  <section class="contact-section">
+    <h2>Send Us a Message</h2>
+    <p>
+      Fill out the form below or email us at
+      <strong>careers@galstonai.com</strong> and we’ll get back to you
+      as soon as possible.
     </p>
-    <div class="team-grid">
-      <div class="team-member">
-        <!-- <img src="https://via.placeholder.com/104" alt="Team member"/> -->
-        <h3>Jordan Lee</h3>
-        <p>AI Software Engineer</p>
-      </div>
-      <div class="team-member">
-        <!-- <img src="https://via.placeholder.com/105" alt="Team member"/> -->
-        <h3>Ravi Patel</h3>
-        <p>Data Scientist</p>
-      </div>
-      <div class="team-member">
-        <!-- <img src="https://via.placeholder.com/106" alt="Team member"/> -->
-        <h3>Amelia Smith</h3>
-        <p>UX Researcher</p>
-      </div>
-      <div class="team-member">
-        <!-- <img src="https://via.placeholder.com/107" alt="Team member"/> -->
-        <h3>Daniel Chen</h3>
-        <p>Full Stack Engineer</p>
-      </div>
-    </div>
-  </div>
+    <form class="contact-form" onsubmit="handleForm(event)">
+      <input type="text" placeholder="Name" required/>
+      <input type="email" placeholder="Email" required/>
+      <textarea rows="5" placeholder="Your message here..." required></textarea>
+      <button type="submit" class="submit-btn">Submit</button>
+    </form>
+  </section>
 
-  <!-- LARGE FOOTER -->
-  <footer>
+ <!-- LARGE FOOTER -->
+ <footer>
     <!-- COLUMN 1: ADDRESS/CONTACT -->
     <div class="footer-column">
       <h4>Headquarters</h4>
@@ -335,7 +303,7 @@
     <div class="footer-bottom">
       &copy; 2025 Galston AI. All rights reserved.
     </div>
-  </footer>
+ </footer>
 
   <script>
     document.addEventListener("DOMContentLoaded", function() {
@@ -347,6 +315,12 @@
       setTimeout(() => {
         window.location.href = page;
       }, 500);
+    }
+
+    function handleForm(e) {
+      e.preventDefault();
+      alert("Thanks for contacting Galston AI! We’ll get back to you shortly.");
+      e.target.reset();
     }
   </script>
 </body>
