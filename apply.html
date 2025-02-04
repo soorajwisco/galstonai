@@ -337,7 +337,9 @@
 
     <!-- APPLICATION FORM -->
 
-    <form>
+    <form
+        class="application-form"
+        >
       <label for="fullname">Full Name</label>
       <input type="text" id="fullname" name="fullname" placeholder="John Doe" required />
 
@@ -417,7 +419,16 @@
 
     function submitApplication(event) {
       event.preventDefault();
-      alert("Application submitted! Thank you for applying to Galston AI.");
+      data = {
+        fullname: document.getElementById("fullname").value,
+        email: document.getElementById("email").value,
+        university: document.getElementById("university").value,
+        resume: document.getElementById("resume").value,
+        cover: document.getElementById("cover").value
+      }
+      //fetch to a backend server
+      console.log(data);
+    
     }
   </script>
 </body>
