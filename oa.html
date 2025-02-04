@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>GalstonAI Coding Assessment</title>
+  <style>
+    :root {
+      --bg-color: #0f0f0f;
+      --accent-color: #ff6b00;
+      --text-color: #ffffff;
+      --pass-color: #32cd32;
+      --fail-color: #ff4d4d;
+      --gray: #cccccc;
+      --font-family: Arial, sans-serif;
+    }
+    * {
+      margin: 0; 
+      padding: 0; 
+      box-sizing: border-box;
+      font-family: var(--font-family);
+    }
+    body {
+      background: var(--bg-color);
+      color: var(--text-color);
+      line-height: 1.5;
+    }
+    header {
+      text-align: center;
+      padding: 1.5rem;
+      background: rgba(255, 255, 255, 0.02);
+    }
+    header h1 {
+      font-size: 2rem;
+      color: var(--accent-color);
+      margin-bottom: 0.5rem;
+    }
+    .container {
+      max-width: 1000px;
+      margin: 2rem auto;
+      padding: 1rem;
+    }
+    .tabs {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      margin-bottom: 2rem;
+    }
+    .tab-button {
+      background: none;
+      border: 2px solid var(--accent-color);
+      color: var(--accent-color);
+      padding: 0.5rem 1rem;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    .tab-button.active,
+    .tab-button:hover {
+      background: var(--accent-color);
+      color: var(--text-color);
+    }
+    .question-container {
+      display: none;
+    }
+    .question-container.active {
+      display: block;
+    }
+
+    /* Code Editor */
+    .editor {
+      width: 100%;
+      height: 200px;
+      background: #1e1e1e;
+      color: var(--gray);
+      font-family: Consolas, monospace;
+      font-size: 0.9rem;
+      padding: 0.5rem;
+      margin-bottom: 1rem;
+      resize: vertical; /* so user can drag the corner to expand */
+    }
+
+    /* Run Button */
+    .run-btn {
+      display: inline-block;
+      background: var(--accent-color);
+      color: var(--text-color);
+      border: none;
+      padding: 0.7rem 1.4rem;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    .run-btn:hover {
+      background: #ff8122;
+    }
+
+    /* Test Results */
+    .test-results {
+      margin-top: 1.5rem;
+    }
+    .test-case {
+      margin-bottom: 0.5rem;
+    }
+    .pass {
+      color: var(--pass-color);
+      font-weight: bold;
+    }
+    .fail {
+      color: var(--fail-color);
+      font-weight: bold;
+    }
+
+    footer {
+      text-align: center;
+      padding: 2rem;
+      color: var(--gray);
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>GalstonAI Coding Assessment</h1>
+    <p>Write your JavaScript solutions in the editor, then click "Run Tests".</p>
+  </header>
+
+  <div class="container">
+    <!-- TABS FOR QUESTIONS -->
+    <div class="tabs">
+      <button class="tab-button active" onclick="showQuestion('q1', this)">Question 1</button>
+      <button class="tab-button" onclick="showQuestion('q2', this)">Question 2</button>
+    </div>
+
+    <!-- QUESTION 1 -->
+    <div id="q1" class="question-container active">
+      <h2>Question 1: Sum an Array</h2>
+      <p>
+        Write a function <strong>solve(arr)</strong> that takes an array of integers and returns the sum of all elements.
+      </p>
+      <ol>
+        <li>Example: If arr = [1, 2, 3], the function should return 6.</li>
+        <li>Example: If arr = [5, -2, 10], the function should return 13.</li>
+      </ol>
+      <br />
+      <textarea id="codeQ1" class="editor" placeholder="Write your JS solution here...">
+// Example solution:
+function solve(arr) {
+  let sum = 0;
+  for (let num of arr) {
+    sum += num;
+  }
+  return sum;
+}
+      </textarea>
+      <button class="run-btn" onclick="runTests('q1')">Run Tests</button>
+      <div id="resultsQ1" class="test-results"></div>
+    </div>
+
+    <!-- QUESTION 2 -->
+    <div id="q2" class="question-container">
+      <h2>Question 2: Palindrome Check</h2>
+      <p>
+        Write a function <strong>solve(str)</strong> that returns <em>true</em> if the given string is a palindrome, or <em>false</em> otherwise.
+      </p>
+      <ol>
+        <li>A palindrome reads the same forwards and backwards.</li>
+        <li>Example: "racecar" -> true, "hello" -> false.</li>
+      </ol>
+      <br />
+      <textarea id="codeQ2" class="editor" placeholder="Write your JS solution here...">
+// Example solution:
+function solve(str) {
+  let reversed = str.split('').reverse().join('');
+  return reversed === str;
+}
+      </textarea>
+      <button class="run-btn" onclick="runTests('q2')">Run Tests</button>
+      <div id="resultsQ2" class="test-results"></div>
+    </div>
+  </div>
+
+  <footer>
+    &copy; 2025 GalstonAI Assessments
+  </footer>
+
+  <script>
+    // --------------------------------
+    // SWITCH BETWEEN QUESTION TABS
+    // --------------------------------
+    function showQuestion(questionId, btn) {
+      // Hide all question containers
+      const allContainers = document.querySelectorAll('.question-container');
+      allContainers.forEach(cont => cont.classList.remove('active'));
+
+      // Show the selected container
+      const selected = document.getElementById(questionId);
+      selected.classList.add('active');
+
+      // Update tab button styling
+      const allButtons = document.querySelectorAll('.tab-button');
+      allButtons.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+    }
+
+    // --------------------------------
+    // TEST CASES
+    // --------------------------------
+
+    // Q1 testcases: sum array
+    const testCasesQ1 = [
+      {
+        input: [1, 2, 3],
+        expected: 6
+      },
+      {
+        input: [5, -2, 10],
+        expected: 13
+      },
+      {
+        input: [],
+        expected: 0
+      },
+      {
+        input: [10],
+        expected: 10
+      }
+    ];
+
+    // Q2 testcases: palindrome check
+    const testCasesQ2 = [
+      {
+        input: "racecar",
+        expected: true
+      },
+      {
+        input: "hello",
+        expected: false
+      },
+      {
+        input: "A",
+        expected: true
+      },
+      {
+        input: "abba",
+        expected: true
+      }
+    ];
+
+    // --------------------------------
+    // RUN TESTS
+    // --------------------------------
+    function runTests(questionId) {
+      let code, testCases, resultsContainer;
+
+      if (questionId === 'q1') {
+        code = document.getElementById('codeQ1').value;
+        testCases = testCasesQ1;
+        resultsContainer = document.getElementById('resultsQ1');
+      } else {
+        code = document.getElementById('codeQ2').value;
+        testCases = testCasesQ2;
+        resultsContainer = document.getElementById('resultsQ2');
+      }
+
+      // Clear previous results
+      resultsContainer.innerHTML = '';
+
+      // Try evaluating the code
+      let userFunc;
+      try {
+        // We wrap the user's code, then return the function called solve
+        // so we can call it from testcases
+        const wrappedCode = `
+          ${code}
+          return solve;
+        `;
+        userFunc = new Function(wrappedCode)(); // create user function
+      } catch (err) {
+        resultsContainer.innerHTML = 
+          '<p style="color:red;">Error in your code: ' + err.message + '</p>';
+        return;
+      }
+
+      // If userFunc is not a function, we can't proceed
+      if (typeof userFunc !== 'function') {
+        resultsContainer.innerHTML = 
+          '<p style="color:red;">No valid function named "solve" found.</p>';
+        return;
+      }
+
+      // Run each testcase
+      testCases.forEach((tc, index) => {
+        let resultElem = document.createElement('div');
+        resultElem.className = 'test-case';
+        const inputString = (Array.isArray(tc.input)) 
+                            ? '[' + tc.input.join(', ') + ']'
+                            : JSON.stringify(tc.input);
+
+        let userOutput;
+        let passFailMsg;
+
+        try {
+          userOutput = userFunc(tc.input);
+        } catch (err) {
+          passFailMsg = `<span class="fail">FAILED (Error: ${err.message})</span>`;
+          resultElem.innerHTML = 
+            `Test #${index + 1} | Input: ${inputString}, Expected: ${tc.expected}, Got: ERROR ${passFailMsg}`;
+          resultsContainer.appendChild(resultElem);
+          return;
+        }
+
+        if (userOutput === tc.expected) {
+          passFailMsg = '<span class="pass">PASSED</span>';
+        } else {
+          passFailMsg = '<span class="fail">FAILED</span>';
+        }
+
+        resultElem.innerHTML =
+          `Test #${index + 1} | Input: ${inputString}, Expected: ${tc.expected}, Got: ${userOutput} ${passFailMsg}`;
+        resultsContainer.appendChild(resultElem);
+      });
+    }
+  </script>
+</body>
+</html>

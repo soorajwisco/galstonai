@@ -417,18 +417,62 @@
       }, 500);
     }
 
-    function submitApplication(event) {
+    async function submitApplication(event) {
       event.preventDefault();
-      data = {
-        fullname: document.getElementById("fullname").value,
-        email: document.getElementById("email").value,
-        university: document.getElementById("university").value,
-        resume: document.getElementById("resume").value,
-        cover: document.getElementById("cover").value
+      
+      // Collect form data
+      const fullname = document.getElementById('fullname').value;
+      const email = document.getElementById('email').value;
+      const university = document.getElementById('university').value;
+      const cover = document.getElementById('cover').value;
+
+      // PDF file as base64
+      const resumeInput = document.getElementById('resume');
+      const file = resumeInput.files[0];
+      if (!file) {
+        alert("Please attach your PDF resume.");
+        return;
       }
-      //fetch to a backend server
-      console.log(data);
-    
+      const base64Resume = await fileToBase64(file);
+
+      // Construct query string
+      // WARNING: For large PDFs, the URL might exceed max length
+      // This is for demonstration only.
+      const queryParams = new URLSearchParams({
+        fullname: fullname,
+        email: email,
+        university: university,
+        cover: cover, 
+      });
+
+      const url = `http://sooraj.emojdle.com/galston?${queryParams.toString()}`;
+
+      try {
+        const response = await fetch(url, { method: 'GET' });
+        if (!response.ok) {
+          throw new Error('Server responded with ' + response.status);
+        }
+        const result = await response.text();
+        console.log('Server response:', result);
+        //once the fetch is successful, go to page thankyou.html
+        window.location.href = 'thankyou.html';
+      } catch (err) {
+        console.error('Error in GET request:', err);
+        alert('Failed to send application: ' + err.message);
+      }
+    }
+
+    function fileToBase64(file) {
+      return new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.onload = () => {
+          // remove the "data:application/pdf;base64," prefix
+          const base64Data = reader.result.split(',')[1];
+          resolve(base64Data);
+        };
+        reader.onerror = err => reject(err);
+        reader.readAsDataURL(file);
+      });
     }
   </script>
 </body>
